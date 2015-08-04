@@ -1,0 +1,14 @@
+.twc-panel__header
+  .twc-panel__title Authorization
+  .twc-panel__close(twc-panel-close)
+.twc-authorization.twc-panel__main
+  button.twc-button.twc-button--primary.twc-button--wide(
+    ng-click="authorization.logIn()"
+  ) Log In
+  p
+    | Keep me log in&nbsp;
+    select(
+      name="expiration"
+      ng-model="authorization.expiration"
+      ng-options="value as label for (value, label) in authorization.expirations"
+    )

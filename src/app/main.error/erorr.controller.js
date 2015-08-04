@@ -3,10 +3,9 @@
 
   angular
     .module('oj.trelloWebClipper')
-    .config(config);
+    .controller('ErrorController', ErrorController);
 
   /** @ngInject */
-  function config() {
+  function ErrorController() {
   }
-
 })();

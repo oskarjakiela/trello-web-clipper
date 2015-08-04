@@ -1,0 +1,39 @@
+.twc-button {
+  display: inline-block;
+  margin: 8px 4px 0 0;
+  border: medium none;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 #8C8C8C;
+  background: transparent linear-gradient(to bottom, #C4C9CC 0, #B6BBBF 100%) repeat scroll 0% 0%;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 22px;
+  padding: 7px 20px;
+  text-align: center;
+  min-height: 34px;
+
+  &:focus {
+    outline: 0 none;
+  }
+
+  &:focus,
+  &:hover {
+    background: transparent linear-gradient(to bottom, #B6BBBF 0, #A5ACB0 100%) repeat scroll 0% 0%;
+  }
+}
+
+.twc-button--wide {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.twc-button--primary {
+  background: transparent linear-gradient(to bottom, #61BD4F 0, #5AAC44 100%) repeat scroll 0% 0%;
+  box-shadow: 0 1px 0 #4D4D4D;
+  color: #FFF;
+
+  &:focus,
+  &:hover {
+      background: transparent linear-gradient(to bottom, #5AAC44 0, #519839 100%) repeat scroll 0% 0%;
+  }
+}

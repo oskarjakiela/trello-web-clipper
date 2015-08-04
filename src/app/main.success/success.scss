@@ -1,0 +1,11 @@
+.twc-success {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    display: inline-block;
+    margin-top: 8px;
+  }
+}

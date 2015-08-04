@@ -1,0 +1,45 @@
+$twc-panel-height : 430px;
+
+.twc-panel {
+  padding: 10px;
+  width: 300px;
+  height: $twc-panel-height;
+}
+
+.twc-panel__header {
+  position: relative;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #d6dadc;
+  padding-bottom: 10px;
+}
+
+.twc-panel__title {
+  display: block;
+  padding: 0 32px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #8c8c8c;
+}
+
+.twc-panel__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  color: #999;
+  font-size: 12px;
+  font-weight: 700;
+
+  &:hover {
+    color: #4d4d4d;
+  }
+}
+
+.twc-panel__main {
+  height: $twc-panel-height - 50px;
+}

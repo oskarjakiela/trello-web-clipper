@@ -1,0 +1,59 @@
+.twc-select {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  border: 1px solid #e2e4e6;
+  border-style: solid;
+  border-radius: 3px;
+  border-bottom-color: #cdd2d4;
+  background: transparent linear-gradient(to bottom, #fff 0, #f9f9f9 100%) repeat scroll 0% 0%;
+  padding: 7px;
+  height: 52px;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 700;
+  user-select: none;
+
+  &:hover {
+    border-color: #298fca #298fca #026aa7;
+    background: #298fca;
+
+    .twc-select__label {
+      color: #eee;
+    }
+
+    .twc-select__value {
+      color: #fff;
+    }
+  }
+
+  select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 10;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    -moz-appearance: none;
+  }
+
+  .twc-select__label {
+    display: block;
+    margin-bottom: 0;
+    line-height: 14px;
+    color: #8c8c8c;
+    font-size: 12px;
+  }
+
+  .twc-select__value {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 24px;
+    font-size: 18px;
+  }
+}

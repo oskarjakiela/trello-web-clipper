@@ -1,0 +1,54 @@
+.twc-panel__header
+  .twc-panel__title Clipping
+  .twc-panel__close(twc-panel-close)
+.twc-clipping.twc-panel__main
+  form.twc-form(name="cardForm")
+    .twc-select
+      label.twc-select__label Board
+      span.twc-select__value(
+        ng-bind="clipping.card.board.name"
+      )
+      select(
+        name="board"
+        ng-model="clipping.card.board"
+        ng-options="item.name for item in clipping.boards track by item.id"
+      )
+
+    .twc-select.twc-clipping__list
+      label.twc-select__label List
+      span.twc-select__value(
+        ng-bind="clipping.card.list.name"
+      )
+      select(
+        name="list"
+        ng-model="clipping.card.list"
+        ng-options="item.name for item in clipping.lists track by item.id"
+      )
+
+    .twc-select.twc-clipping__position
+      label.twc-select__label Position
+      span.twc-select__value(
+        ng-bind="clipping.getPositionLabel(clipping.card.position)"
+      )
+      select(
+        name="position"
+        ng-model="clipping.card.position"
+        ng-options="value as label for (value, label) in clipping.positions"
+      )
+
+    label Title
+    input(
+      type="text"
+      name="name"
+      ng-model="clipping.card.name"
+    )
+
+    label Description
+    textarea(
+      name="desc"
+      ng-model="clipping.card.desc"
+    )
+
+    button.twc-button.twc-button--primary.twc-button--wide(
+      ng-click="clipping.add(clipping.card)"
+    ) Create Card

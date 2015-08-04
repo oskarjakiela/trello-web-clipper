@@ -2,6 +2,8 @@
   'use strict';
 
   angular
-    .module('trelloWebClipperJs', ['ui.router']);
+    .module('oj.trelloWebClipper', [
+      'ui.router'
+    ]);
 
 })();

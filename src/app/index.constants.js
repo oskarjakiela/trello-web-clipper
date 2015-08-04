@@ -1,11 +1,11 @@
-/* global malarkey:false, toastr:false, moment:false */
+/* global self: false, Trello: false */
+
 (function() {
   'use strict';
 
   angular
-    .module('trelloWebClipperJs')
-    .constant('malarkey', malarkey)
-    .constant('toastr', toastr)
-    .constant('moment', moment);
+    .module('oj.trelloWebClipper')
+    .constant('self', self)
+    .constant('Trello', Trello);
 
 })();

@@ -1,0 +1,29 @@
+.twc-form {
+  input:not([type="file"]),
+  textarea {
+    display: block;
+    margin: 4px 0 12px;
+    border: 1px solid #cdd2d4;
+    border-radius: 3px;
+    background-color: #e2e4e6;
+    padding: 7px;
+    width: 100%;
+    min-height: 34px;
+
+    &:focus {
+      border-color: #298fca;
+      box-shadow: 0 0 2px #298fca;
+      background: #fff;
+    }
+  }
+
+  textarea {
+    height: 72px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+}
