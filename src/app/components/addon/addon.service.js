@@ -15,6 +15,12 @@
       tabs: angular.noop
     };
 
+    if (angular.isUndefined(self.port)) {
+      self.port = {
+        on: function (){}
+      };
+    }
+
     service.close = close;
 
     service.storage = {};
