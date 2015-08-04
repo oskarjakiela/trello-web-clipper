@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('oj.trelloWebClipper')
+    .module('twc')
     .controller('SuccessController', SuccessController);
 
   /** @ngInject */

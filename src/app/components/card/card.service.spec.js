@@ -4,7 +4,7 @@
   describe('service $card', function() {
     var $addon, $card;
 
-    beforeEach(module('oj.trelloWebClipper'));
+    beforeEach(module('twc'));
     beforeEach(inject(function(_$addon_, _$card_) {
       $addon = _$addon_;
       $card = _$card_;

@@ -19,7 +19,7 @@ gulp.task('partials', ['markups'], function () {
       quotes: true
     }))
     .pipe($.angularTemplatecache('templateCacheHtml.js', {
-      module: 'trelloWebClipperJs',
+      module: 'twc',
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
