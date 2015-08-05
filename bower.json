@@ -1,11 +1,34 @@
 {
   "title": "Trello Web Clipper - JavaScript Core",
-  "name": "trello-web-clipper.js",
+  "name": "trello-web-clipper",
   "version": "0.0.0",
   "authors": [
     "Oskar Jakieła <oskar@jakiela.pl>"
   ],
   "license": "MIT",
+  "main": [
+    "src/app/index.module.js",
+    "src/app/index.scss"
+  ],
+  "ignore": [
+    ".sass-cache/",
+    ".tmp/",
+    "bower_components/",
+    "coverage/",
+    "e2e/",
+    "gulp/",
+    "node_modules/",
+    "src/",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    "gulpfile.js",
+    ".jshintrc",
+    "karma.conf.js",
+    "package.json",
+    "protractor.conf.js",
+    ".yo-rc.json"
+  ],
   "dependencies": {
     "jquery": "^2.1.0",
     "angular-ui-router": "^0.2.0",
