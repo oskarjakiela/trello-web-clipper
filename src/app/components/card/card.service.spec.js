@@ -42,5 +42,28 @@
         expect($card.desc).toEqual('[Google](https://google.com)\n\nvia [Trello Web Clipper](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)');
       });
     });
+
+    describe('toApi function', function() {
+      it('should return throw error if there is not any list', function() {
+        expect($card.toApi).toThrow();
+      });
+
+      it('should return throw error if list have not got id', function() {
+        $card.list = {};
+        expect($card.toApi).toThrow();
+      });
+
+      it('should serialize card', function() {
+        $card.list = { id: '1' };
+        $card.name = 'Foo';
+        $card.desc = 'Bar';
+        expect($card.toApi()).toEqual({
+          idList: '1',
+          name: 'Foo',
+          desc: 'Bar',
+          pos: 'bottom'
+        });
+      });
+    });
   });
 })();

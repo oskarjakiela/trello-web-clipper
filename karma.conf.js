@@ -31,6 +31,8 @@ module.exports = function(config) {
 
     autoWatch: false,
 
+    reporters: ['progress', 'coverage'],
+
     frameworks: ['jasmine', 'angular-filesort'],
 
     angularFilesort: {
@@ -45,6 +47,7 @@ module.exports = function(config) {
     browsers : ['PhantomJS'],
 
     plugins : [
+      'karma-coverage',
       'karma-phantomjs-launcher',
       'karma-angular-filesort',
       'karma-jasmine',
@@ -52,7 +55,9 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/**/*.html': ['ng-html2js']
+      'src/**/*.html': ['ng-html2js'],
+      'src/**/!(*.spec).js': ['coverage']
+    },
     }
   };
 

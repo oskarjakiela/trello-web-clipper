@@ -28,6 +28,11 @@
     }
 
     function toApi() {
+      if (! service.list ||
+          ! service.list.id) {
+        throw new Error('Cannot serialize card, missing list');
+      }
+
       return {
         idList: service.list.id,
         name: service.name,
