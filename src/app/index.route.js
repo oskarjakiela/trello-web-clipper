@@ -12,7 +12,18 @@
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        resolve: {
+          manifest: function ($addon) {
+            return $addon.manifest();
+          },
+          options: function resolveOptions($addon) {
+            return $addon.options();
+          },
+          storage: function resolveStorage($addon) {
+            return $addon.storage();
+          }
+        }
       })
       .state('main.authorization', {
         url: 'authorization',
@@ -26,11 +37,13 @@
         controller: 'ClippingController',
         controllerAs: 'clipping',
         resolve: {
-          boards: function($q, Trello) {
+          boards: function ($q, Trello) {
             var deferred = $q.defer();
 
-            Trello.get('/members/me/boards?fields=name&filter=open&lists=open', function(boards) {
+            Trello.get('/members/me/boards?fields=name&filter=open&lists=open', function (boards) {
               deferred.resolve(boards);
+            }, function () {
+              deferred.reject(arguments);
             });
 
             return deferred.promise;

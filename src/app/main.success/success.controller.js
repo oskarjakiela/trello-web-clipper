@@ -6,13 +6,18 @@
     .controller('SuccessController', SuccessController);
 
   /** @ngInject */
-  function SuccessController($log, $card, self) {
+  function SuccessController($addon, $card) {
     var vm = this;
 
     vm.openCard = openCard;
 
     function openCard() {
-      self.port.emit('openCard', $card.url);
+      $addon.tabs({
+        method: 'open',
+        args: [$card.url, { inNewWindow: true }]
+      }).then(function() {
+        return $addon.popup.hide();
+      });
     }
   }
 })();

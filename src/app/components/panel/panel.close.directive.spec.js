@@ -13,7 +13,7 @@
     }));
 
     beforeEach(function() {
-      spyOn($addon, 'close');
+      spyOn($addon.popup, 'hide');
     });
 
     beforeEach(function() {
@@ -29,7 +29,7 @@
 
     it('should close addon on click', function() {
       element.trigger('click');
-      expect($addon.close.calls.count()).toEqual(1);
+      expect($addon.popup.hide.calls.count()).toEqual(1);
     });
   });
 

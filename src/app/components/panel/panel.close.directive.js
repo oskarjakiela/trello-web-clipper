@@ -6,14 +6,14 @@
     .directive('twcPanelClose', twcPanelClose);
 
   /** @ngInject */
-  function twcPanelClose($log, $addon) {
+  function twcPanelClose($addon) {
     return {
       restrict: 'A',
       link: function (scope, element) {
         element
           .html('&times')
           .on('click', function() {
-            $addon.close();
+            $addon.popup.hide();
           });
       }
     };

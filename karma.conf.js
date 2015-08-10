@@ -14,6 +14,7 @@ function listFiles() {
 
   return wiredep(wiredepOptions).js
     .concat([
+      path.join('bower_components/Array.prototype.find/index.js'),
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
@@ -31,7 +32,7 @@ module.exports = function(config) {
 
     autoWatch: false,
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['mocha', 'coverage'],
 
     frameworks: ['jasmine', 'angular-filesort'],
 
@@ -51,13 +52,33 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-angular-filesort',
       'karma-jasmine',
-      'karma-ng-html2js-preprocessor'
+      'karma-ng-html2js-preprocessor',
+      'karma-mocha-reporter'
     ],
 
     preprocessors: {
       'src/**/*.html': ['ng-html2js'],
       'src/**/!(*.spec).js': ['coverage']
     },
+
+    coverageReporter: {
+      check: {
+        global: {
+          statements: 100,
+          branches: 100,
+          functions: 100,
+          lines: 100,
+          excludes: [
+            'src/app/index.*.js'
+          ]
+        }
+      },
+      each: {
+        statements: 100,
+        branches: 100,
+        functions: 100,
+        lines: 100
+      }
     }
   };
 

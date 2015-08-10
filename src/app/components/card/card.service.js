@@ -6,7 +6,7 @@
     .service('$card', $card);
 
   /** @ngInject */
-  function $card($log, $addon, properties) {
+  function $card($addon, properties) {
     var service = this;
 
     service.position = properties.defaults.position;
@@ -20,9 +20,11 @@
       service.name = tab.title;
       service.attachmentUrl = tab.url;
 
-      service.desc = $addon.prefs['desc.template']
-        .replace(/{{\s*title\s*}}/g, tab.title)
-        .replace(/{{\s*url\s*}}/g, tab.url);
+      $addon.options().then(function(options) {
+        service.desc = options['desc.template']
+          .replace(/{{\s*title\s*}}/g, tab.title)
+          .replace(/{{\s*url\s*}}/g, tab.url);
+      });
 
       return service;
     }

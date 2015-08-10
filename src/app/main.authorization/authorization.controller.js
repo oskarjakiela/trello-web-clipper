@@ -6,7 +6,7 @@
     .controller('AuthorizationController', AuthorizationController);
 
   /** @ngInject */
-  function AuthorizationController($log, $addon, properties, $state, Trello) {
+  function AuthorizationController($addon, manifest, properties, Trello) {
     var vm = this;
 
     vm.expiration = properties.defaults.expiration;
@@ -15,7 +15,7 @@
 
     function logIn() {
       Trello.authorize({
-        name: $addon.pkg.title,
+        name: manifest.title,
         type: 'popup',
         scope: {
           read: true,
@@ -24,8 +24,12 @@
         },
         expiration: vm.expiration,
         success: function() {
-          $addon.storage.save('token', Trello.token());
-          $state.go('main', {}, { reload: true });
+          $addon.storage({
+            token: Trello.token()
+          })
+          .then(function() {
+            return $addon.popup.show();
+          });
         }
       });
     }

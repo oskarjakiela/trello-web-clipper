@@ -2,17 +2,12 @@
   'use strict';
 
   describe('service $card', function() {
-    var $addon, $card;
+    var $card;
 
     beforeEach(module('twc'));
-    beforeEach(inject(function(_$addon_, _$card_) {
-      $addon = _$addon_;
+    beforeEach(inject(function(_$card_) {
       $card = _$card_;
     }));
-
-    beforeEach(function() {
-      $addon.prefs['desc.template'] = '[{{title}}]({{  url  }})\n\nvia [Trello Web Clipper](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)';
-    });
 
     it('should be registered', function() {
       expect($card).not.toEqual(null);
