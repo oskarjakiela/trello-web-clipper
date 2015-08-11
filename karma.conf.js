@@ -1,4 +1,4 @@
-'use strict';
+/*eslint-env node */
 
 var path = require('path');
 var conf = require('./gulp/conf');

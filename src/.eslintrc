@@ -1,0 +1,10 @@
+env:
+  browser: true
+  jasmine: true
+
+globals:
+  angular: true
+  module: true
+  inject: true
+
+extends: '../.eslintrc'
