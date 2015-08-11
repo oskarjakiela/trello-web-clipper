@@ -1,0 +1,12 @@
+linters:
+  ColorVariable:
+    enabled: false
+
+  EmptyRule:
+    enabled: false
+
+  PropertySortOrder:
+    order: concentric
+
+  SelectorFormat:
+    convention: hyphenated_BEM

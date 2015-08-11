@@ -37,6 +37,8 @@ gulp.task('styles', function () {
   ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
+    .pipe($.scssLint())
+    .pipe($.scssLint.failReporter())
     .pipe($.sourcemaps.init())
     .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
     .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
