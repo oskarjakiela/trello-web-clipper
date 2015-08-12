@@ -4,4 +4,3 @@ bower_components/
 .idea/
 .tmp/
 coverage/
-dist/

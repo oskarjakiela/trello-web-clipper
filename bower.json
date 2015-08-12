@@ -21,13 +21,16 @@
     "src/",
     ".bowerrc",
     ".editorconfig",
+    ".eslintrc",
     ".gitignore",
+    ".travis.yml",
+    ".yo-rc.json",
+    "Gemfile",
+    "Gemfile.lock",
     "gulpfile.js",
-    ".jshintrc",
     "karma.conf.js",
     "package.json",
-    "protractor.conf.js",
-    ".yo-rc.json"
+    "protractor.conf.js"
   ],
   "dependencies": {
     "angular": "^1.4.0",

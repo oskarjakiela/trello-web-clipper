@@ -1,3 +1,5 @@
+; // eslint-disable-line no-extra-semi
+
 (function() {
   'use strict';
 
