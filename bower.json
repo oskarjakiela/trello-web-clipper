@@ -5,6 +5,10 @@
   "authors": [
     "Oskar Jakieła <oskar@jakiela.pl>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oskarjakiela/trello-web-clipper.git"
+  },
   "license": "MIT",
   "main": [
     "src/app/index.module.js",
