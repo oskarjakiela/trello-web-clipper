@@ -27,6 +27,7 @@
     ".editorconfig",
     ".eslintrc",
     ".gitignore",
+    ".scss-lint.yml",
     ".travis.yml",
     ".yo-rc.json",
     "Gemfile",
