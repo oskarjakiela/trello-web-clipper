@@ -14,7 +14,7 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-          manifest: function ($addon) {
+          manifest: function resolveManifest($addon) {
             return $addon.manifest();
           },
           options: function resolveOptions($addon) {
@@ -37,7 +37,7 @@
         controller: 'ClippingController',
         controllerAs: 'clipping',
         resolve: {
-          boards: function ($q, Trello) {
+          boards: function resolveBoards($q, Trello) {
             var deferred = $q.defer();
 
             Trello.get('/members/me/boards?fields=name&filter=open&lists=open', function (boards) {
