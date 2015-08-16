@@ -15,6 +15,7 @@ function listFiles() {
   return wiredep(wiredepOptions).js
     .concat([
       path.join('bower_components/Array.prototype.find/index.js'),
+      path.join(conf.paths.src, '/app/vendors/**/*.js'),
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
@@ -68,6 +69,7 @@ module.exports = function(config) {
           functions: 100,
           lines: 100,
           excludes: [
+            'src/app/vendors/**/*.js',
             'src/app/index.*.js'
           ]
         }
