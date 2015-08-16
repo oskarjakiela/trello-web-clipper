@@ -27,9 +27,6 @@
           // actually it calls only in Firefox
           $addon.storage({
             token: Trello.token()
-          })
-          .then(function() {
-            return $addon.popup.show();
           });
         }
       });

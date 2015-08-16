@@ -25,7 +25,6 @@
 
     service.popup = {};
     service.popup.on = promiseBuilder('popup');
-
     service.popup.hide = function hide() {
       var deferred = $q.defer();
 
@@ -36,9 +35,6 @@
 
       return deferred.promise;
     };
-
-    service.popup.show = promiseBuilder('popup:show');
-
 
     function promiseBuilder(name) {
       var eventName = '$addon:' + name;

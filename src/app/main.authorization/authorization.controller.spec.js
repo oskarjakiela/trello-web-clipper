@@ -13,7 +13,6 @@
     }));
 
     beforeEach(inject(function($controller) {
-      spyOn($addon.popup, 'show');
       spyOn($addon, 'storage').and.callThrough();
       spyOn(Trello, 'token').and.returnValue('abcdefghijklmnop');
       spyOn(Trello, 'authorize').and.callFake(function() {
@@ -51,10 +50,6 @@
         expect($addon.storage).toHaveBeenCalledWith({
           token: 'abcdefghijklmnop'
         });
-      });
-
-      it('should show popup after success', function() {
-        expect($addon.popup.show).toHaveBeenCalled();
       });
     });
   });

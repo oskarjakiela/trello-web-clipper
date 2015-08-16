@@ -25,9 +25,7 @@
     service.popup.on = function onPopup(eventName, callback) {
       port.on('$addon:popup:' + eventName, callback);
     };
-
     service.popup.hide = promiseBuilder('popup:hide');
-    service.popup.show = promiseBuilder('popup:show');
 
 
     function promiseBuilder(name) {
