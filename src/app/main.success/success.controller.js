@@ -9,7 +9,12 @@
   function SuccessController($addon, $card) {
     var vm = this;
 
+    vm.closePopup = closePopup;
     vm.openCard = openCard;
+
+    function closePopup() {
+      $addon.popup.hide();
+    }
 
     function openCard() {
       $addon.tabs.open({

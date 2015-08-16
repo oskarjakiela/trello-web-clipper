@@ -27,6 +27,10 @@
       expect($scope.success.openCard).toBeDefined();
     });
 
+    it('should have closePopup method', function() {
+      expect($scope.success.closePopup).toBeDefined();
+    });
+
     describe('when open trello card', function() {
       beforeEach(function() {
         $scope.success.openCard();
@@ -39,7 +43,17 @@
         });
       });
 
-      it('should hien popup on success', function() {
+      it('should hide popup on success', function() {
+        expect($addon.popup.hide).toHaveBeenCalled();
+      });
+    });
+
+    describe('when close popup', function() {
+      beforeEach(function() {
+        $scope.success.closePopup();
+      });
+
+      it('should hide popup', function() {
         expect($addon.popup.hide).toHaveBeenCalled();
       });
     });
