@@ -24,6 +24,7 @@
         },
         expiration: vm.expiration,
         success: function() {
+          // actually it calls only in Firefox
           $addon.storage({
             token: Trello.token()
           })

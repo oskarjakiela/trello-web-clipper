@@ -6,11 +6,15 @@
     .factory('$addon', $addon);
 
   /** @ngInject */
-  function $addon($firefox, $mock, self) {
-    if (angular.isUndefined(self.port)) {
-      return $mock;
+  function $addon(chrome, $chrome, firefox, $firefox, $mock) {
+    if (chrome) {
+      return $chrome;
     }
 
-    return $firefox;
+    if (firefox) {
+      return $firefox;
+    }
+
+    return $mock;
   }
 })();

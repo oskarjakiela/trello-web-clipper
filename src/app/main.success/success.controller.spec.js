@@ -16,7 +16,7 @@
 
     beforeEach(inject(function($controller) {
       spyOn($addon.popup, 'hide');
-      spyOn($addon, 'tabs').and.callThrough();
+      spyOn($addon.tabs, 'open').and.callThrough();
 
       $controller('SuccessController as success', {
         $scope: $scope
@@ -33,10 +33,9 @@
       });
 
       it('should open new tab', function() {
-        expect($addon.tabs).toHaveBeenCalled();
-        expect($addon.tabs).toHaveBeenCalledWith({
-          method: 'open',
-          args: ['https://google.com', { inNewWindow: true }]
+        expect($addon.tabs.open).toHaveBeenCalled();
+        expect($addon.tabs.open).toHaveBeenCalledWith({
+          url: 'https://google.com'
         });
       });
 

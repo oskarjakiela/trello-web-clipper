@@ -9,8 +9,8 @@
   function ClippingController($addon, boards, $card, properties, $scope, $state, storage, Trello) {
     var vm = this;
 
-    $addon.tabs().then(function (tabs) {
-      $card.fromTab(tabs.activeTab);
+    $addon.tabs.active().then(function (tab) {
+      $card.fromTab(tab);
     });
 
     vm.add = add;

@@ -20,7 +20,7 @@
     }));
 
     beforeEach(function() {
-      spyOn($addon, 'tabs').and.callThrough();
+      spyOn($addon.tabs, 'active').and.callThrough();
       spyOn($addon, 'storage');
       spyOn($card, 'fromTab');
       spyOn($state, 'go');
@@ -47,7 +47,7 @@
       });
 
       it('should get card from active tab', function() {
-        expect($addon.tabs).toHaveBeenCalled();
+        expect($addon.tabs.active).toHaveBeenCalled();
         expect($card.fromTab).toHaveBeenCalled();
       });
 

@@ -3,15 +3,17 @@
 
   angular
     .module('twc')
-    .service('$firefox', $firefox);
+    .service('$chrome', $chrome);
 
   /** @ngInject */
-  function $firefox(firefox, $q, $timeout) {
-    var service = this;
+  function $chrome(chrome, properties, $q, $timeout, $window) {
+    var service  = this;
 
-    if (! firefox) { return; }
+    if (! chrome) { return; }
 
-    var port = firefox.port;
+    var port = chrome.extension.connect({
+      name: 'trello-web-clipper'
+    });
 
     service.manifest = promiseBuilder('manifest');
     service.options = promiseBuilder('options');
@@ -22,11 +24,19 @@
     service.tabs.open = promiseBuilder('tabs:open');
 
     service.popup = {};
-    service.popup.on = function onPopup(eventName, callback) {
-      port.on('$addon:popup:' + eventName, callback);
+    service.popup.on = promiseBuilder('popup');
+
+    service.popup.hide = function hide() {
+      var deferred = $q.defer();
+
+      $timeout(function() {
+        $window.close();
+        deferred.resolve();
+      });
+
+      return deferred.promise;
     };
 
-    service.popup.hide = promiseBuilder('popup:hide');
     service.popup.show = promiseBuilder('popup:show');
 
 
@@ -37,16 +47,23 @@
         var deferred = $q.defer();
 
         var listener = function listener(message) {
-          deferred.resolve(message);
+          if (message.id === eventName) {
+            deferred.resolve(message.data);
+            port.onMessage.removeListener(listener);
+          }
         };
 
         message = message ? message : undefined;
 
-        port.emit(eventName, message);
-        port.once(eventName, listener);
+        port.onMessage.addListener(listener);
+
+        port.postMessage({
+          id: eventName,
+          data: message
+        });
 
         $timeout(function() {
-          port.removeListener(eventName, listener);
+          port.onMessage.removeListener(listener);
           deferred.reject('Timeout');
         }, 5000);
 

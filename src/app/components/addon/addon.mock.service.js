@@ -20,11 +20,14 @@
       token: 'aaaabbbbccccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnoooopppp'
     });
 
-    service.tabs = promiseBuilder({
-      activeTab: {
-        title: 'Google',
-        url: 'https://google.com'
-      }
+    service.tabs = {};
+    service.tabs.active = promiseBuilder({
+      title: 'Google',
+      url: 'https://google.com'
+    });
+
+    service.tabs.open = promiseBuilder({
+      url: 'https://google.com'
     });
 
     service.manifest = promiseBuilder({
@@ -37,7 +40,6 @@
     service.popup.on = angular.noop;
     service.popup.hide = promiseBuilder();
     service.popup.show = promiseBuilder();
-    service.popup.message = promiseBuilder();
 
 
     function promiseBuilder(returns) {

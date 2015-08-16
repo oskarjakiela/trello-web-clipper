@@ -7,11 +7,14 @@
   box-sizing: border-box;
 }
 
-.twc {
+.twc,
+.twc body {
   position: relative;
   background: #fff;
+  line-height: 18px;
   color: #4d4d4d;
-  font: 14px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 14px;
 }
 
 // injector

@@ -12,9 +12,8 @@
     vm.openCard = openCard;
 
     function openCard() {
-      $addon.tabs({
-        method: 'open',
-        args: [$card.url, { inNewWindow: true }]
+      $addon.tabs.open({
+        url: $card.url
       }).then(function() {
         return $addon.popup.hide();
       });

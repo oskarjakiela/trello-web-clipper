@@ -5,8 +5,8 @@
     .module('twc')
     .value('properties', {
       defaults: {
-        expiration: '30days',
-        position: 'bottom'
+        'expiration': '30days',
+        'position': 'bottom'
       },
 
       expirations: {
