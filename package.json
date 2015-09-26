@@ -1,8 +1,8 @@
 {
   "name": "trello-web-clipper",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test && codecov < coverage/report-cobertura/cobertura-coverage.xml"
   },
   "devDependencies": {
     "browser-sync": "~2.9.0",
@@ -57,8 +57,5 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "scripts": {
-    "test": "gulp test && codecov < coverage/report-cobertura/cobertura-coverage.xml"
   }
 }
