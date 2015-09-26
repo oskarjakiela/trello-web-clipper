@@ -32,7 +32,9 @@ var release = function (type) {
     .pipe(gulp.dest(path.join('.', '/')))
     .pipe(manifestFilter.restore)
     .pipe($.git.commit('Bump version to ' + version))
-    .pipe($.git.tag(version, 'Tagging as ' + version));
+      .on('end', function () {
+        $.git.tag(version, 'Tagging as ' + version);
+      });
   };
 };
 
