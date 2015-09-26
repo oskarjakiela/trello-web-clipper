@@ -4,7 +4,7 @@ node_js:
   - "0.12"
 
 before_install:
-  - npm install -qg bower grunt-cli karma-cli
+  - npm install -qg bower grunt-cli karma-cli phantomjs
   - gem install bundler
   - bundle install
   - bower install
