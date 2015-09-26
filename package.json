@@ -1,7 +1,6 @@
 {
   "name": "trello-web-clipper",
-  "version": "0.0.0",
-  "dependencies": {},
+  "version": "0.2.1",
   "scripts": {
     "test": "gulp test"
   },
@@ -15,11 +14,13 @@
     "gulp-angular-filesort": "~1.1.0",
     "gulp-angular-templatecache": "~1.7.0",
     "gulp-autoprefixer": "~3.0.0",
+    "gulp-bump": "^1.0.0",
     "gulp-consolidate": "~0.1.0",
     "gulp-csso": "~1.0.0",
     "gulp-eslint": "~1.0.0",
     "gulp-filter": "~3.0.0",
     "gulp-flatten": "~0.2.0",
+    "gulp-git": "^1.4.0",
     "gulp-inject": "~3.0.0",
     "gulp-load-plugins": "~0.10.0",
     "gulp-minify-html": "~1.0.0",
