@@ -4,7 +4,10 @@ node_js:
   - "0.12"
 
 before_install:
-  - npm install -qg bower grunt-cli karma-cli phantomjs
+  - npm install -qg bower codecov.io grunt-cli karma-cli phantomjs
   - gem install bundler
   - bundle install
   - bower install
+
+after_install:
+  - codecov < coverage/report-cobertura/cobertura-coverage.xml
