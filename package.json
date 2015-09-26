@@ -49,6 +49,7 @@
     "main-bower-files": "~2.9.0",
     "merge-stream": "~1.0.0",
     "require-dir": "~0.3.0",
+    "semver": "^5.0.3",
     "uglify-save-license": "~0.4.0",
     "wiredep": "~2.2.0",
     "wrench": "~1.5.0"
