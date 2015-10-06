@@ -42,8 +42,8 @@
 
             Trello.get('/members/me/boards?fields=name&filter=open&lists=open', function (boards) {
               deferred.resolve(boards);
-            }, function () {
-              deferred.reject(arguments);
+            }, function (error) {
+              deferred.reject(error);
             });
 
             return deferred.promise;

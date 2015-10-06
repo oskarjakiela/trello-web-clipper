@@ -2,11 +2,12 @@
   'use strict';
 
   describe('controller MainController', function() {
-    var init, $state, Trello;
+    var init, $rootScope, $state, Trello;
 
     beforeEach(module('twc'));
 
-    beforeEach(inject(function(_$state_, _Trello_) {
+    beforeEach(inject(function(_$rootScope_, _$state_, _Trello_) {
+      $rootScope = _$rootScope_;
       $state = _$state_;
       Trello = _Trello_;
     }));
@@ -24,6 +25,10 @@
         });
       };
     }));
+
+    afterEach(function() {
+      $state.go.calls.reset();
+    });
 
     describe('always', function() {
       beforeEach(init);
@@ -47,7 +52,7 @@
 
       it('should go to clipping view', function() {
         expect($state.go.calls.count()).toEqual(1);
-        expect($state.go.calls.argsFor(0)).toEqual(['main.clipping']);
+        expect($state.go).toHaveBeenCalledWith('main.clipping');
       });
     });
 
@@ -58,9 +63,41 @@
       });
 
       it('should go to authorization view', function() {
-        expect($state.go.calls.count()).toEqual(1);
-        expect($state.go.calls.argsFor(0)).toEqual(['main.authorization']);
+        expect($state.go).toHaveBeenCalled();
+        expect($state.go).toHaveBeenCalledWith('main.authorization');
       });
     });
+
+    describe('when state error', function() {
+      describe('is 401', function() {
+        beforeEach(function() {
+          spyOn(Trello, 'deauthorize');
+          init();
+          $rootScope.$broadcast('$stateChangeError', {}, {}, {}, {}, { status: 401 });
+        });
+
+        it('should deauthorize Trello', function() {
+          expect(Trello.deauthorize.calls.count()).toEqual(1);
+        });
+
+        it('should go to authorization view', function() {
+          expect($state.go).toHaveBeenCalled();
+          expect($state.go).toHaveBeenCalledWith('main.authorization');
+        });
+      });
+
+      describe('is unrecognized', function() {
+        beforeEach(function() {
+          init();
+          $rootScope.$broadcast('$stateChangeError', {}, {}, {}, {}, {});
+        });
+
+        it('should go to error view', function() {
+          expect($state.go).toHaveBeenCalled();
+          expect($state.go).toHaveBeenCalledWith('main.error');
+        });
+      });
+    });
+
   });
 })();
