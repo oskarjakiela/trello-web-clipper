@@ -11,7 +11,7 @@
 
     service.options = promiseBuilder({
       'key': 'aaaabbbbccccddddeeeeffffgggghhhh',
-      'desc.template': '[{{ title }}]({{ url }})\n\nvia [Trello Web Clipper](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)'
+      'desc.template': '[{{ title }}]({{ url }})\n\nvia [Web Clipper for Trello](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)'
     });
 
     service.storage = promiseBuilder({
@@ -32,7 +32,7 @@
 
     service.manifest = promiseBuilder({
       name: 'trello-web-clipper',
-      title: 'Trello Web Clipper',
+      title: 'Web Clipper for Trello',
       version: '0.0.0'
     });
 

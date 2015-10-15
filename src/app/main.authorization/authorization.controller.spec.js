@@ -21,7 +21,7 @@
       });
 
       $controller('AuthorizationController as authorization', {
-        manifest: { title: 'Trello Web Clipper' },
+        manifest: { title: 'Web Clipper for Trello' },
         $scope: $scope
       });
     }));
@@ -42,7 +42,7 @@
       });
 
       it('should use title form manifest as name', function() {
-        expect(Trello.authorize.calls.argsFor(0)[0].name).toEqual('Trello Web Clipper');
+        expect(Trello.authorize.calls.argsFor(0)[0].name).toEqual('Web Clipper for Trello');
       });
 
       it('should save token to storage', function() {

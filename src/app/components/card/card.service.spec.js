@@ -34,7 +34,7 @@
 
         expect($card.name).toEqual('Google');
         expect($card.attachmentUrl).toEqual('https://google.com');
-        expect($card.desc).toEqual('[Google](https://google.com)\n\nvia [Trello Web Clipper](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)');
+        expect($card.desc).toEqual('[Google](https://google.com)\n\nvia [Web Clipper for Trello](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)');
       });
     });
 
