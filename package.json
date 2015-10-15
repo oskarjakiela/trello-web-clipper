@@ -1,6 +1,6 @@
 {
   "name": "trello-web-clipper",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "scripts": {
     "test": "gulp test && codecov < coverage/report-cobertura/cobertura-coverage.xml"
   },
