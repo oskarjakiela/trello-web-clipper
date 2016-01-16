@@ -85,7 +85,7 @@
           expect($state.go).toHaveBeenCalledWith('main.authorization');
         });
 
-        it('should loop in error view', function() {
+        it('should not loop in error view', function() {
           expect($state.go).not.toHaveBeenCalledWith('main.error');
         });
       });
