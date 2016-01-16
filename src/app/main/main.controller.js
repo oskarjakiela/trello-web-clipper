@@ -20,6 +20,7 @@
       if (error.status === 401) {
         Trello.deauthorize();
         $state.go('main.authorization');
+        return;
       }
 
       $state.go('main.error');
