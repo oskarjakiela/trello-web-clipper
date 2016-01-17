@@ -1,7 +1,8 @@
-.twc-panel__header
-  .twc-panel__title Authorization
-  .twc-panel__close(twc-panel-close)
-.twc-authorization.twc-panel__main
+div(
+  twc-panel
+  title="Authorization"
+  class="twc-authorization"
+)
   button.twc-button.twc-button--primary.twc-button--wide(
     ng-click="authorization.logIn()"
   ) Log In

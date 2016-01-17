@@ -19,7 +19,7 @@ function listFiles() {
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.html')
+      path.join(conf.paths.tmp, '/serve/**/*.html')
     ]);
 }
 
@@ -41,7 +41,7 @@ module.exports = function(config) {
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
+      stripPrefix: '.tmp/serve/',
       moduleName: 'twc'
     },
 
@@ -57,7 +57,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/**/*.html': ['ng-html2js'],
+      '.tmp/serve/**/*.html': ['ng-html2js'],
       'src/**/!(*.spec).js': ['coverage']
     },
 

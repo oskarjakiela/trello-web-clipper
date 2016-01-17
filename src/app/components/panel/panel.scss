@@ -13,6 +13,24 @@ $twc-panel-height : 430px;
   padding-bottom: 10px;
 }
 
+.twc-panel__settings {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+
+  svg {
+    cursor: pointer;
+    fill: #999;
+
+    &:hover {
+      fill: #4d4d4d;
+    }
+  }
+}
+
 .twc-panel__title {
   display: block;
   padding: 0 32px;

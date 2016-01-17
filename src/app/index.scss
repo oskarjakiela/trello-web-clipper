@@ -7,6 +7,15 @@
   box-sizing: border-box;
 }
 
+a {
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: #111;
+  }
+}
+
 .twc,
 .twc body {
   position: relative;

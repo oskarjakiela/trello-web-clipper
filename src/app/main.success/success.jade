@@ -1,7 +1,8 @@
-.twc-panel__header
-  .twc-panel__title Card Clipped!
-  .twc-panel__close(twc-panel-close)
-.twc-success.twc-panel__main
+div(
+  twc-panel
+  title="Card Clipped!"
+  class="twc-success"
+)
   button.twc-button.twc-button--primary.twc-button--wide(
     ng-click="success.openCard()"
   ) View Card
