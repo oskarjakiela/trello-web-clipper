@@ -13,7 +13,7 @@ function runTests (singleRun, done) {
   });
 }
 
-gulp.task('test', ['scripts', 'styles'], function(done) {
+gulp.task('test', ['scripts', 'styles', 'markups'], function(done) {
   runTests(true, done);
 });
 
