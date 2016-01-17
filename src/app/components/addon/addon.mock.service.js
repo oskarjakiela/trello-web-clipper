@@ -17,6 +17,11 @@
     service.storage = promiseBuilder({
       // idBoard: 'aaaabbbbccccddddeeeeffff',
       // idList: 'aaaabbbbccccddddeeeeffff',
+      'options.apiKey': 'aaaabbbbccccddddeeeeffffgggghhhh',
+      'options.template': [
+        '[{{ page.title }}]({{ page.url }})\n',
+        'via [{{ addon.title }}]({{ addon.url }})'
+      ].join('\n'),
       token: 'aaaabbbbccccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnoooopppp'
     });
 

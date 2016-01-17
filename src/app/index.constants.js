@@ -1,4 +1,4 @@
-/* global Trello: false */
+/* global _: false, Trello: false */
 
 (function() {
   'use strict';
@@ -8,6 +8,7 @@
 
   angular
     .module('twc')
+    .constant('_', _)
     .constant('chrome', chrome)
     .constant('firefox', firefox)
     .constant('Trello', Trello);
