@@ -16,7 +16,6 @@
     });
 
     service.manifest = promiseBuilder('manifest');
-    service.options = promiseBuilder('options');
     service.storage = promiseBuilder('storage');
 
     service.tabs = {};

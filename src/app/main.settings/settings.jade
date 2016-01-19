@@ -1,0 +1,30 @@
+div(
+  twc-panel
+  title="Settings"
+  class="twc-settings"
+)
+  form.twc-form(name="settingsForm")
+    label API key
+    input(
+      type="text"
+      name="apiKey"
+      ng-model="settings.options.apiKey"
+    )
+
+    label Description
+      textarea(
+        name="template"
+        ng-model="settings.options.template"
+      )
+
+    label Authorization
+    a.twc-settings__log-out(
+      ng-click="settings.logOut()"
+    ) Log out
+
+    br
+
+    button.twc-button.twc-button--primary.twc-button--wide(
+      ng-click="settings.save(settings.options)"
+    ) Save
+

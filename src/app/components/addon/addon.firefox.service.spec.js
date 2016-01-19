@@ -18,31 +18,31 @@
       $timeout = _$timeout_;
     }));
 
-    describe('options function', function() {
-      it('should emit $addon:options and listend to it once', function() {
-        $firefox.options();
+    describe('storage function', function() {
+      it('should emit $addon:storage and listend to it once', function() {
+        $firefox.storage();
 
         expect(firefox.port.emit).toHaveBeenCalled();
-        expect(firefox.port.emit.calls.allArgs()[0][0]).toEqual('$addon:options');
+        expect(firefox.port.emit.calls.allArgs()[0][0]).toEqual('$addon:storage');
         expect(firefox.port.once).toHaveBeenCalled();
-        expect(firefox.port.once.calls.allArgs()[0][0]).toEqual('$addon:options');
+        expect(firefox.port.once.calls.allArgs()[0][0]).toEqual('$addon:storage');
       });
 
       it('should pass empty message', function() {
-        $firefox.options();
+        $firefox.storage();
         expect(firefox.port.emit.calls.allArgs()[0][1]).toBeUndefined();
       });
 
       it('should pass message', function() {
-        $firefox.options({ foo: 'bar' });
-        expect(firefox.port.emit.calls.allArgs()[0][1]).toEqual({ foo: 'bar' });
+        $firefox.storage({ foo: 'bar' });
+        expect(firefox.port.emit).toHaveBeenCalledWith('$addon:storage', { foo: 'bar' });
       });
 
-      it('should resolve promise on $addon:options', function() {
+      it('should resolve promise on $addon:storage', function() {
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
-        $firefox.options({ foo: 'bar' }).then(success, error);
-        firefox.port.once.calls.allArgs()[0][1]();
+        $firefox.storage({ foo: 'bar' }).then(success, error);
+        firefox.port.once.calls.allArgs()[1][1]();
         $rootScope.$digest();
         expect(success).toHaveBeenCalled();
         expect(error).not.toHaveBeenCalled();
@@ -51,7 +51,7 @@
       it('should reject promise on timeout', function() {
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
-        $firefox.options({ foo: 'bar' }).then(success, error);
+        $firefox.storage({ foo: 'bar' }).then(success, error);
         $timeout.flush();
         expect(success).not.toHaveBeenCalled();
         expect(error).toHaveBeenCalled();

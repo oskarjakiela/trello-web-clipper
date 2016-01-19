@@ -9,11 +9,6 @@
   function $mock() {
     var service = this;
 
-    service.options = promiseBuilder({
-      'key': 'aaaabbbbccccddddeeeeffffgggghhhh',
-      'desc.template': '[{{ title }}]({{ url }})\n\nvia [Web Clipper for Trello](https://addons.mozilla.org/en-US/firefox/addon/trello-web-clipper/)'
-    });
-
     service.storage = promiseBuilder({
       // idBoard: 'aaaabbbbccccddddeeeeffff',
       // idList: 'aaaabbbbccccddddeeeeffff',
@@ -45,7 +40,6 @@
     service.popup.on = angular.noop;
     service.popup.hide = promiseBuilder();
     service.popup.show = promiseBuilder();
-
 
     function promiseBuilder(returns) {
       return function() {

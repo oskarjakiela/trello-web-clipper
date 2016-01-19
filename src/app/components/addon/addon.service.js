@@ -3,18 +3,43 @@
 
   angular
     .module('twc')
-    .factory('$addon', $addon);
+    .factory('$addon', $addonFactory);
 
   /** @ngInject */
-  function $addon(chrome, $chrome, firefox, $firefox, $mock) {
+  function $addonFactory(apiKey, chrome, $chrome, firefox, $firefox, $mock, $template) {
+    var $addon = $mock;
+
     if (chrome) {
-      return $chrome;
+      $addon = $chrome;
     }
 
     if (firefox) {
-      return $firefox;
+      $addon = $firefox;
     }
 
-    return $mock;
+    $addon.init = function init() {
+      return $addon.storage().then(function(storage) {
+        if (! storage['options.apiKey']) {
+          return $addon.reset();
+        }
+      });
+    };
+
+    $addon.reset = function reset() {
+      return $addon.storage({
+        'options.apiKey': apiKey,
+        'options.template': $template.getDefault(),
+        'token': null
+      });
+    };
+
+    $addon.logOut = function logOut() {
+      return $addon.storage({
+        'options.apiKey': apiKey,
+        'token': null
+      });
+    };
+
+    return $addon;
   }
 })();

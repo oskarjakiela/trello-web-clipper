@@ -6,8 +6,8 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(options, $rootScope, $state, storage, Trello) {
-    Trello.setKey(options.key);
+  function MainController($addon, $rootScope, $state, storage, Trello) {
+    Trello.setKey(storage['options.apiKey']);
     Trello.setToken(storage.token);
 
     if (Trello.authorized()) {
@@ -19,6 +19,7 @@
     $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
       if (error.status === 401) {
         Trello.deauthorize();
+        $addon.reset();
         $state.go('main.authorization');
         return;
       }

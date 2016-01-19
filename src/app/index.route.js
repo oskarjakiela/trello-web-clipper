@@ -17,9 +17,6 @@
           manifest: function resolveManifest($addon) {
             return $addon.manifest();
           },
-          options: function resolveOptions($addon) {
-            return $addon.options();
-          },
           storage: function resolveStorage($addon) {
             return $addon.storage();
           }
@@ -55,6 +52,17 @@
         templateUrl: 'app/main.error/error.html',
         controller: 'ErrorController',
         controllerAs: 'error'
+      })
+      .state('main.settings', {
+        url: 'settings',
+        templateUrl: 'app/main.settings/settings.html',
+        controller: 'SettingsController',
+        controllerAs: 'settings',
+        resolve: {
+          storage: function resolveStorage($addon) {
+            return $addon.storage();
+          }
+        }
       })
       .state('main.success', {
         url: 'success',

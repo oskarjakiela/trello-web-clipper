@@ -32,31 +32,31 @@
       $window = _$window_;
     }));
 
-    describe('options function', function() {
-      it('should post $addon:options message', function() {
-        $chrome.options();
+    describe('storage function', function() {
+      it('should post $addon:storage message', function() {
+        $chrome.storage();
 
         expect(port.postMessage).toHaveBeenCalled();
         expect(port.postMessage).toHaveBeenCalledWith({
-          id: '$addon:options',
+          id: '$addon:storage',
           data: undefined
         });
       });
 
       it('should pass message in data', function() {
-        $chrome.options({ foo: 'bar' });
+        $chrome.storage({ foo: 'bar' });
         expect(port.postMessage).toHaveBeenCalledWith({
-          id: '$addon:options',
+          id: '$addon:storage',
           data: { foo: 'bar' }
         });
       });
 
-      it('should resolve promise on $addon:options', function() {
+      it('should resolve promise on $addon:storage', function() {
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
-        $chrome.options({ foo: 'bar' }).then(success, error);
-        port.onMessage.addListener.calls.allArgs()[1][0]({
-          id: '$addon:options'
+        $chrome.storage({ foo: 'bar' }).then(success, error);
+        port.onMessage.addListener.calls.allArgs()[2][0]({
+          id: '$addon:storage'
         });
         $rootScope.$digest();
         expect(success).toHaveBeenCalled();
@@ -64,10 +64,23 @@
         expect(port.onMessage.removeListener).toHaveBeenCalled();
       });
 
+      it('should not resolve promise on other event', function() {
+        var success = jasmine.createSpy('success');
+        var error = jasmine.createSpy('error');
+        $chrome.storage({ foo: 'bar' }).then(success, error);
+        port.onMessage.addListener.calls.allArgs()[2][0]({
+          id: '$addon:otherEvent'
+        });
+        $rootScope.$digest();
+        expect(success).not.toHaveBeenCalled();
+        expect(error).not.toHaveBeenCalled();
+        expect(port.onMessage.removeListener).not.toHaveBeenCalled();
+      });
+
       it('should reject promise on timeout', function() {
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
-        $chrome.options({ foo: 'bar' }).then(success, error);
+        $chrome.storage({ foo: 'bar' }).then(success, error);
         port.onMessage.addListener.calls.allArgs()[1][0]({
           id: '$addon:popup'
         });
