@@ -38,10 +38,10 @@
     "protractor.conf.js"
   ],
   "dependencies": {
+    "jquery": "^2.1.0",
     "angular": "^1.4.0",
     "angular-ui-router": "^0.2.0",
     "Array.prototype.find": "~1.0.0",
-    "jquery": "^2.1.0",
     "normalize.css": "^3.0.3"
   },
   "devDependencies": {
