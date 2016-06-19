@@ -6,7 +6,9 @@
     .controller('SuccessController', SuccessController);
 
   /** @ngInject */
-  function SuccessController($addon, $card) {
+  function SuccessController($log, $addon, $card) {
+    $log.info('SuccessController');
+
     var vm = this;
 
     vm.closePopup = closePopup;

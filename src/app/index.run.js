@@ -6,11 +6,16 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($addon, $state) {
+  function runBlock($log, $addon, $rootScope, $state, Trello) {
+    $log.info('runBlock');
 
-    // refresh app in firefox on show popup
-    $addon.popup.on('show', function() {
-      $state.go('main', {}, { reload: true });
+    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+      $log.error('$stateChangeError', error);
+    });
+
+    $addon.on('$addon:popup:hide', function() {
+      if (! Trello.authorized()) { return; }
+      $state.go('main.clipping');
     });
   }
 

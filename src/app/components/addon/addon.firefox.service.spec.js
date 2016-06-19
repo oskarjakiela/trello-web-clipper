@@ -8,7 +8,7 @@
 
     beforeEach(module(function($provide) {
       firefox = {};
-      firefox.port = jasmine.createSpyObj('port', ['emit', 'on', 'once', 'removeListener']);
+      firefox.port = jasmine.createSpyObj('port', ['emit', 'on', 'removeListener']);
       $provide.constant('firefox', firefox);
     }));
 
@@ -19,30 +19,38 @@
     }));
 
     describe('storage function', function() {
-      it('should emit $addon:storage and listend to it once', function() {
+      it('should emit $addon:storage and listend to it', function() {
         $firefox.storage();
 
         expect(firefox.port.emit).toHaveBeenCalled();
-        expect(firefox.port.emit.calls.allArgs()[0][0]).toEqual('$addon:storage');
-        expect(firefox.port.once).toHaveBeenCalled();
-        expect(firefox.port.once.calls.allArgs()[0][0]).toEqual('$addon:storage');
+        expect(firefox.port.emit.calls.allArgs()[0][0]).toEqual('$addon');
+        expect(firefox.port.on).toHaveBeenCalled();
+        expect(firefox.port.on.calls.allArgs()[0][0]).toEqual('$addon');
       });
 
       it('should pass empty message', function() {
         $firefox.storage();
-        expect(firefox.port.emit.calls.allArgs()[0][1]).toBeUndefined();
+        expect(firefox.port.emit).toHaveBeenCalledWith('$addon', {
+          id: '$addon:storage',
+          data: undefined
+        });
       });
 
       it('should pass message', function() {
         $firefox.storage({ foo: 'bar' });
-        expect(firefox.port.emit).toHaveBeenCalledWith('$addon:storage', { foo: 'bar' });
+        expect(firefox.port.emit).toHaveBeenCalledWith('$addon', {
+          id: '$addon:storage',
+          data: { foo: 'bar' }
+        });
       });
 
       it('should resolve promise on $addon:storage', function() {
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
         $firefox.storage({ foo: 'bar' }).then(success, error);
-        firefox.port.once.calls.allArgs()[1][1]();
+        firefox.port.on.calls.allArgs()[1][1]({
+          id: '$addon:storage'
+        });
         $rootScope.$digest();
         expect(success).toHaveBeenCalled();
         expect(error).not.toHaveBeenCalled();

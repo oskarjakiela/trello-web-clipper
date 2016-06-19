@@ -6,12 +6,18 @@
     .controller('AuthorizationController', AuthorizationController);
 
   /** @ngInject */
-  function AuthorizationController($addon, manifest, properties, Trello) {
+  function AuthorizationController($log, $addon, manifest, properties, $state, Trello) {
+    $log.info('AuthorizationController');
+
     var vm = this;
 
     vm.expiration = properties.defaults.expiration;
     vm.expirations = properties.expirations;
     vm.logIn = logIn;
+
+    if (Trello.authorized()) {
+      $state.go('main');
+    }
 
     function logIn() {
       Trello.authorize({
@@ -24,9 +30,8 @@
         },
         expiration: vm.expiration,
         success: function() {
-          // actually it calls only in Firefox
-          $addon.storage({
-            token: Trello.token()
+          $addon.token(Trello.token()).then(function() {
+            $state.go('main', {}, { reload: true });
           });
         }
       });

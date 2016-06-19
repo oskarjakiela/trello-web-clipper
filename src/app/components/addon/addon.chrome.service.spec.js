@@ -55,7 +55,7 @@
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
         $chrome.storage({ foo: 'bar' }).then(success, error);
-        port.onMessage.addListener.calls.allArgs()[2][0]({
+        port.onMessage.addListener.calls.allArgs()[1][0]({
           id: '$addon:storage'
         });
         $rootScope.$digest();
@@ -68,7 +68,7 @@
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
         $chrome.storage({ foo: 'bar' }).then(success, error);
-        port.onMessage.addListener.calls.allArgs()[2][0]({
+        port.onMessage.addListener.calls.allArgs()[0][0]({
           id: '$addon:otherEvent'
         });
         $rootScope.$digest();
@@ -81,7 +81,7 @@
         var success = jasmine.createSpy('success');
         var error = jasmine.createSpy('error');
         $chrome.storage({ foo: 'bar' }).then(success, error);
-        port.onMessage.addListener.calls.allArgs()[1][0]({
+        port.onMessage.addListener.calls.allArgs()[0][0]({
           id: '$addon:popup'
         });
         $timeout.flush();

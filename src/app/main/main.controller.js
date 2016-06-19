@@ -6,9 +6,11 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($addon, $rootScope, $state, storage, Trello) {
+  function MainController($log, $addon, $rootScope, $state, storage, token, Trello) {
+    $log.info('MainController');
+
     Trello.setKey(storage['options.apiKey']);
-    Trello.setToken(storage.token);
+    Trello.setToken(token);
 
     if (Trello.authorized()) {
       $state.go('main.clipping');

@@ -2,12 +2,13 @@
   'use strict';
 
   describe('controller SettingsController', function() {
-    var $addon, $scope, $state, storage, Trello, vm;
+    var $addon, $q, $scope, $state, storage, Trello, vm;
 
     beforeEach(module('twc'));
 
-    beforeEach(inject(function(_$addon_, _$rootScope_, _$state_, _Trello_) {
+    beforeEach(inject(function(_$addon_, _$q_, _$rootScope_, _$state_, _Trello_) {
       $addon = _$addon_;
+      $q = _$q_;
       $state = _$state_;
       Trello = _Trello_;
 
@@ -28,7 +29,7 @@
 
     describe('when save settings', function() {
       beforeEach(function() {
-        spyOn($addon, 'storage');
+        spyOn($addon, 'storage').and.returnValue($q.resolve());
         spyOn($state, 'go');
       });
 
@@ -37,6 +38,7 @@
           apiKey: 'foo',
           template: 'bar'
         });
+        $scope.$digest();
       });
 
       it('should save them to storage', function() {
@@ -55,12 +57,15 @@
 
     describe('when log out', function() {
       beforeEach(function() {
-        spyOn($addon, 'storage');
+        spyOn($addon, 'storage').and.returnValue($q.resolve());
         spyOn($state, 'go');
         spyOn(Trello, 'deauthorize');
       });
 
-      beforeEach(function() { vm.logOut(); });
+      beforeEach(function() {
+        vm.logOut();
+        $scope.$digest();
+      });
 
       it('should deauthorize Trello', function() {
         expect(Trello.deauthorize).toHaveBeenCalled();

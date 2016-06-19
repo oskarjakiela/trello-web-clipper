@@ -2,11 +2,12 @@
   'use strict';
 
   describe('controller ClippingController', function() {
-    var $addon, boards, $card, clipping, $scope, $state, storage, Trello;
+    var activeTab, $addon, boards, $card, clipping, $scope, $state, storage, Trello;
 
     beforeEach(module('twc'));
 
     beforeEach(function() {
+      activeTab = {};
       boards = [];
       storage = {};
     });
@@ -22,7 +23,7 @@
     beforeEach(function() {
       spyOn($addon.tabs, 'active').and.callThrough();
       spyOn($addon, 'storage');
-      spyOn($card, 'fromTab');
+      spyOn($card, 'fromTab').and.returnValue({});
       spyOn($state, 'go');
 
     });
@@ -30,6 +31,7 @@
     describe('always', function() {
       beforeEach(inject(function($controller) {
         $controller('ClippingController as clipping', {
+          activeTab: activeTab,
           boards: boards,
           $scope: $scope,
           storage: storage
@@ -47,7 +49,6 @@
       });
 
       it('should get card from active tab', function() {
-        expect($addon.tabs.active).toHaveBeenCalled();
         expect($card.fromTab).toHaveBeenCalled();
       });
 
@@ -176,6 +177,7 @@
 
       beforeEach(inject(function($controller) {
         $controller('ClippingController as clipping', {
+          activeTab: activeTab,
           boards: boards,
           $scope: $scope,
           storage: storage

@@ -9,6 +9,8 @@
   function $mock() {
     var service = this;
 
+    service.on = angular.noop;
+
     service.storage = promiseBuilder({
       // idBoard: 'aaaabbbbccccddddeeeeffff',
       // idList: 'aaaabbbbccccddddeeeeffff',
@@ -29,6 +31,8 @@
     service.tabs.open = promiseBuilder({
       url: 'https://google.com'
     });
+
+    service.token = promiseBuilder('aaaabbbbccccddddeeeeffffgggghhhhiiiijjjjkkkkllllmmmmnnnnoooopppp');
 
     service.manifest = promiseBuilder({
       name: 'trello-web-clipper',

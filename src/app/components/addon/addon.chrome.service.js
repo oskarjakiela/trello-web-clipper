@@ -6,33 +6,36 @@
     .service('$chrome', $chrome);
 
   /** @ngInject */
-  function $chrome(chrome, properties, $q, $timeout, $window) {
+  function $chrome($log, chrome, properties, $q, $timeout, $window) {
     var service  = this;
 
     if (! chrome) { return; }
 
-    var port = chrome.extension.connect({
-      name: 'trello-web-clipper'
-    });
+    var port = chrome.extension.connect({ name: 'trello-web-clipper' });
+
+    service.on = function(eventName, callback) {
+      port.onMessage.addListener(function (request) {
+        if (request.id === eventName) { callback(); }
+      });
+    };
 
     service.manifest = promiseBuilder('manifest');
     service.storage = promiseBuilder('storage');
+    service.token = promiseBuilder('token');
 
     service.tabs = {};
     service.tabs.active = promiseBuilder('tabs:active');
     service.tabs.open = promiseBuilder('tabs:open');
 
     service.popup = {};
-    service.popup.on = promiseBuilder('popup');
+
     service.popup.hide = function hide() {
-      var deferred = $q.defer();
+      $window.close();
+      return $q.resolve();
+    };
 
-      $timeout(function() {
-        $window.close();
-        deferred.resolve();
-      });
-
-      return deferred.promise;
+    service.popup.show = function show() {
+      return $q.resolve();
     };
 
     function promiseBuilder(name) {

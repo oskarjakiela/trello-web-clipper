@@ -6,7 +6,9 @@
     .controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function SettingsController($addon, $state, storage, Trello) {
+  function SettingsController($log, $addon, $state, storage, Trello) {
+    $log.info('SettingsController');
+
     var vm = this;
 
     vm.options = {};
@@ -20,14 +22,16 @@
       $addon.storage({
         'options.apiKey': options.apiKey,
         'options.template': options.template
+      }).then(function() {
+        $state.go('main.clipping');
       });
-      $state.go('main.clipping');
     }
 
     function logOut() {
       Trello.deauthorize();
-      $addon.logOut();
-      $state.go('main.authorization');
+      $addon.logOut().then(function() {
+        $state.go('main.authorization');
+      });
     }
   }
 })();

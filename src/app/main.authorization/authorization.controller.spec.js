@@ -13,7 +13,7 @@
     }));
 
     beforeEach(inject(function($controller) {
-      spyOn($addon, 'storage').and.callThrough();
+      spyOn($addon, 'token').and.callThrough();
       spyOn(Trello, 'token').and.returnValue('abcdefghijklmnop');
       spyOn(Trello, 'authorize').and.callFake(function() {
         var options = Trello.authorize.calls.argsFor(0)[0];
@@ -45,11 +45,9 @@
         expect(Trello.authorize.calls.argsFor(0)[0].name).toEqual('Web Clipper for Trello');
       });
 
-      it('should save token to storage', function() {
-        expect($addon.storage).toHaveBeenCalled();
-        expect($addon.storage).toHaveBeenCalledWith({
-          token: 'abcdefghijklmnop'
-        });
+      it('should save token', function() {
+        expect($addon.token).toHaveBeenCalled();
+        expect($addon.token).toHaveBeenCalledWith('abcdefghijklmnop');
       });
     });
   });

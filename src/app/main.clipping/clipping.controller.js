@@ -6,7 +6,7 @@
     .controller('ClippingController', ClippingController);
 
   /** @ngInject */
-  function ClippingController(activeTab, $addon, boards, $card, properties, $scope, $state, storage, Trello) {
+  function ClippingController(activeTab, $addon, boards, $card, properties, $scope, $state, storage, $timeout, Trello) {
     var vm = this;
 
     vm.add = add;
@@ -14,6 +14,10 @@
     vm.card = $card.fromTab(activeTab);
     vm.getPositionLabel = getPositionLabel;
     vm.positions = properties.positions;
+
+    if (! Trello.authorized()) {
+      $state.go('main');
+    }
 
     if (storage.idBoard) {
       vm.card.board = vm.boards.find(function(board) {
@@ -44,6 +48,14 @@
     function getPositionLabel(position) {
       return properties.positions[position];
     }
+
+    $addon.on('$addon:popup:show', function() {
+      $addon.tabs.active().then(function(activeTab) {
+        $timeout(function() {
+          vm.card = $card.fromTab(activeTab);
+        });
+      });
+    });
 
     $scope.$watch('clipping.card.board', function () {
       if (vm.card.board) {

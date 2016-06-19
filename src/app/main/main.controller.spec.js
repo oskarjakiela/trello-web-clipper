@@ -20,8 +20,8 @@
         spyOn(Trello, 'setToken');
 
         $controller('MainController', {
-          options: { key: 'abcdefgh' },
-          storage: { token: 'abcdefghijklmnop' }
+          storage: { 'options.apiKey': 'abcdefgh' },
+          token: 'abcdefghijklmnop'
         });
       };
     }));
