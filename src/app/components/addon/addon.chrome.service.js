@@ -62,6 +62,10 @@
           deferred.reject('Timeout');
         }, 5000);
 
+        deferred.promise.catch(function(reason) {
+          $log.error(eventName, reason);
+        });
+
         return deferred.promise;
       };
     }
