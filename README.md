@@ -22,6 +22,24 @@ Clip web pages directly to Trello.
 * Clipping text selection and image from context menu.
 * Clipping entire page content.
 
+## Building
+### Pre-requirements
+Before start make sure you have installed and configured (e.g. executable paths added to enviroment variable PATH) following packages.
+* git
+* node 4.4.x
+* npm 2.x
+* ruby 2.x
+
+### Instruction
+To build sources type following commands. You will find minified code in dist directory.
+```
+$ npm install -qg bower gulp
+$ gem install bundler
+$ bundle install
+$ bower install
+$ gulp build
+```
+
 ## Disclaimer
 I **do not** affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. ([www.trello.com](https://www.trello.com)).
 
