@@ -34,6 +34,9 @@
         controller: 'ClippingController',
         controllerAs: 'clipping',
         resolve: {
+          activeTab: function resolveActiveTab($addon) {
+            return $addon.tabs.active();
+          },
           boards: function resolveBoards($q, Trello) {
             var deferred = $q.defer();
 

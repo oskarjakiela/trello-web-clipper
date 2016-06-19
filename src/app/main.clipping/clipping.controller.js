@@ -6,16 +6,12 @@
     .controller('ClippingController', ClippingController);
 
   /** @ngInject */
-  function ClippingController($addon, boards, $card, properties, $scope, $state, storage, Trello) {
+  function ClippingController(activeTab, $addon, boards, $card, properties, $scope, $state, storage, Trello) {
     var vm = this;
-
-    $addon.tabs.active().then(function (tab) {
-      $card.fromTab(tab);
-    });
 
     vm.add = add;
     vm.boards = boards;
-    vm.card = $card;
+    vm.card = $card.fromTab(activeTab);
     vm.getPositionLabel = getPositionLabel;
     vm.positions = properties.positions;
 
