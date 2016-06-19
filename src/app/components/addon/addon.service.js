@@ -6,7 +6,7 @@
     .factory('$addon', $addonFactory);
 
   /** @ngInject */
-  function $addonFactory(apiKey, chrome, $chrome, firefox, $firefox, $mock, $template) {
+  function $addonFactory(apiKey, chrome, $chrome, firefox, $firefox, $mock, $q, $template) {
     var $addon = $mock;
 
     if (chrome) {
@@ -19,9 +19,11 @@
 
     $addon.init = function init() {
       return $addon.storage().then(function(storage) {
-        if (! storage['options.apiKey']) {
-          return $addon.reset();
+        if (storage['options.apiKey']) {
+          return $q.resolve();
         }
+
+        return $addon.reset();
       });
     };
 

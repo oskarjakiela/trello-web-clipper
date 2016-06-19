@@ -14,11 +14,17 @@
         controller: 'MainController',
         controllerAs: 'main',
         resolve: {
-          manifest: function resolveManifest($addon) {
+          init: function resolveInit($addon) {
+            return $addon.init();
+          },
+          manifest: function resolveManifest(init, $addon) {
             return $addon.manifest();
           },
-          storage: function resolveStorage($addon) {
+          storage: function resolveStorage(init, $addon) {
             return $addon.storage();
+          },
+          token: function resolveToken(init, $addon) {
+            return $addon.token();
           }
         }
       })
